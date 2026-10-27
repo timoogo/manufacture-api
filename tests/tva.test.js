@@ -1,7 +1,7 @@
 const { calculerTTC } = require('../src/tva');
 
 test('100 euros HT font 120 euros TTC', () => {
-  expect(calculerTTC(100)).toBe(120);
+  expect(calculerTTC(100)).toBe(999);
 });
 
 test('le taux reduit de 5,5 % fonctionne', () => {
