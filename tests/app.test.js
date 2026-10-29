@@ -16,3 +16,9 @@ test('GET /prix refuse un prix invalide', async () => {
   const res = await request(app).get('/prix?ht=abc');
   expect(res.status).toBe(400);
 });
+
+
+test('GET /prix refuse un prix invalide', async () => {
+  const res = await request(app).get('/prix?ht=-1');
+  expect(res.status).toBe(400);
+});
