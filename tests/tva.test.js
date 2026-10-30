@@ -1,3 +1,4 @@
+const { PrixInvalideError } = require('../src/constants');
 const { calculerTTC } = require('../src/tva');
 
 test('100 euros HT font 120 euros TTC', () => {
@@ -9,7 +10,7 @@ test('le taux reduit de 5,5 % fonctionne', () => {
 });
 
 test('un prix negatif est refuse', () => {
-  expect(() => calculerTTC(-5)).toThrow('Prix invalide');
+  expect(() => calculerTTC(-5)).toThrow(PrixInvalideError);
 });
 
 test('50 euros HT font 55 euros TTC', () => {
