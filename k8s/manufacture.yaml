@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: manufacture-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: manufacture-api
+  template:
+    metadata:
+      labels:
+        app: manufacture-api
+    spec:
+      containers:
+        - name: api
+          image: ghcr.io/timoogo/manufacture-api:latest
+          ports:
+            - containerPort: 3000
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: manufacture-api
+spec:
+  type: NodePort
+  selector:
+    app: manufacture-api
+  ports:
+    - port: 80
+      targetPort: 3000
+      nodePort: 30080
